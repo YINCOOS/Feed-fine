@@ -5,6 +5,9 @@ import {RestaurantsScreen} from '../../features/restaurants/screens/restaurants.
 
 const RestaurantStack = createStackNavigator();
 
+const RestaurantDetails = () => {
+  return <Text>Restaurants Detail</Text>;
+};
 export const RestaurantsNavigator = () => {
   return (
     <RestaurantStack.Navigator headerMode="none">
@@ -14,7 +17,7 @@ export const RestaurantsNavigator = () => {
       />
       <RestaurantStack.Screen
         name="RestaurantDetail"
-        component={() => <Text>Restaurants Detail</Text>}
+        component={RestaurantDetails}
       />
     </RestaurantStack.Navigator>
   );
