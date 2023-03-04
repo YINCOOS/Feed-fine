@@ -12,15 +12,16 @@ const RestaurantStack = createStackNavigator();
 export const RestaurantsNavigator = () => {
   return (
     <RestaurantStack.Navigator
-      headerMode="none"
-      screenOptions={{...TransitionPresets.BottomSheetAndroid}}>
+      screenOptions={{...TransitionPresets.BottomSheetAndroid }}>
       <RestaurantStack.Screen
         name="Restaurants"
         component={RestaurantsScreen}
+        options={{ headerShown: false }}
       />
       <RestaurantStack.Screen
         name="RestaurantDetail"
         component={RestaurantDetailScreen}
+        options={{ headerShown: false }}
       />
     </RestaurantStack.Navigator>
   );
