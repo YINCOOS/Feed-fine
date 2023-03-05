@@ -12,6 +12,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {RestaurantsContextProvider} from './src/services/restaurants/restaurants.context';
 import {LocationContextProvider} from './src/services/location/location.context';
 
+
 export default function App() {
   return (
     <>

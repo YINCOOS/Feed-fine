@@ -4,22 +4,21 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RestaurantsNavigator} from './restaurants.navigator';
 import {Text} from 'react-native';
 import {SafeArea} from '../../components/utility/safe-area.component';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {MapScreen} from '../../features/map/screens/map.screen';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import NoMealsIcon from '@mui/icons-material/NoMeals';
+// import { Icon } from '@rneui/themed';
+// import Icon from 'react-native-paper/lib/typescript/components/Icon';
 
 const TAB_ICON = {
-  Restaurants: NoMealsIcon,
-  Map: 'md-map',
+  Restaurants: 'restaurant',
+  Map: 'map',
   Settings: 'settings',
 };
 const createScreenOptions = ({route}) => {
   const iconName = TAB_ICON[route.name];
   return {
     tabBarIcon: ({size, color}) => (
-      <MaterialCommunityIcons name={iconName} size={size} color={color} />
-      // <ion-icon ios="heart-outline" md="heart-sharp"/>
+      <Ionicons name={iconName} size={size} color={color} />
     ),
   };
 };
