@@ -1,8 +1,10 @@
 import React from 'react';
+import {View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import star from '../../../../assets/star';
 import open from '../../../../assets/open';
 import {Spacer} from '../../../components/spacer/spacer.component';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Text} from '../../../components/typography/text.component';
 import {
   RestaurantCard,
@@ -14,8 +16,9 @@ import {
   Icon,
   Open,
 } from './restaurant-info-card.styles';
+import {Favourite} from '../../../components/favourites/favourite.component';
 
-export const RestaurantInfoCard = ({restaurant = {}}) => { 
+export const RestaurantInfoCard = ({restaurant = {}}) => {
   const {
     name = 'Some Restaurant',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
@@ -33,18 +36,21 @@ export const RestaurantInfoCard = ({restaurant = {}}) => {
   console.log(ratingArray);
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCardCover key={name} source={{uri: photos[0]}} />
+      <View>
+        <Favourite restaurant={restaurant} />
+        <RestaurantCardCover key={name} source={{uri: photos[0]}} />
+      </View>
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
             {ratingArray.map((_, i) => (
-              <SvgXml 
-              key={`star-${placeId}-${i}`}
-              xml={star} 
-              width={20} 
-              height={20} 
-            />
+              <SvgXml
+                key={`star-${placeId}-${i}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <SectionEnd>
