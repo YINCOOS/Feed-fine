@@ -1,15 +1,18 @@
 import React, {useContext, useState} from 'react';
-import {ActivityIndicator, MD2Colors} from 'react-native-paper';
-import {Search} from '../components/search.component';
+import {FlatList, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
+import {ActivityIndicator, MD2Colors} from 'react-native-paper';
+
 import {SafeArea} from '../../../components/utility/safe-area.component';
 import {Spacer} from '../../../components/spacer/spacer.component';
-import {FlatList, TouchableOpacity} from 'react-native';
-import {RestaurantInfoCard} from '../components/restaurants-info-card.component';
+import {FavouritesBar} from '../../../components/favourites/favourites-bar.component';
+
 import {RestaurantsContext} from '../../../services/restaurants/restaurants.context';
 import {FavouritesContext} from '../../../services/favourites/favourites.context';
-import {FavouritesBar} from '../../../components/favourites/favourites-bar.component';
-// import { FavouritesContext } from '../../../services/favourites/favourites.context';
+import {RestaurantInfoCard} from '../components/restaurants-info-card.component';
+import {Search} from '../components/search.component';
+import {RestaurantDetailScreen} from './restaurant-detail.screen';
+// import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -20,20 +23,16 @@ const RestaurantList = styled(FlatList).attrs({
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
-
 const LoadingContainer = styled.View`
   position: absolute;
   top: 50%;
   left: 50%;
 `;
+
 export const RestaurantsScreen = ({navigation}) => {
-  const {isLoading, error, restaurants} = useContext(RestaurantsContext);
+  const {isLoading, restaurants} = useContext(RestaurantsContext);
   const {favourites} = useContext(FavouritesContext);
   const [isToggled, setIsToggled] = useState(false);
-  // const {favourites} = useContext(FavouritesContext);
-  // console.log(favourites);
-  // console.log(RestaurantContext);
-  console.log(navigation);
 
   return (
     <SafeArea>
@@ -55,7 +54,6 @@ export const RestaurantsScreen = ({navigation}) => {
       <RestaurantList
         data={restaurants}
         renderItem={({item}) => {
-          console.log(item);
           return (
             <TouchableOpacity
               onPress={() =>
