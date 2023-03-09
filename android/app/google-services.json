@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "828688226655",
+    "project_id": "foodisready-ced8d",
+    "storage_bucket": "foodisready-ced8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828688226655:android:d4fc4c2ceb899a58193eea",
+        "android_client_info": {
+          "package_name": "com.foodisready"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828688226655-0uiuvmumgu5fveb2v51qq8ajsbkoe330.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9teAyipS-x4T6W3yxdDcOOv-h3gX5kBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "828688226655-0uiuvmumgu5fveb2v51qq8ajsbkoe330.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
