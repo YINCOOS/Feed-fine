@@ -1,12 +1,13 @@
 import React from 'react';
 import { Spacer } from '../../components/spacer/spacer.component';
-import {AccountBackground, AccountCountainer, AccountCover, AuthButton} from './components/account.styles';
+import {AccountBackground, AccountCountainer, AccountCover, AuthButton, Title} from './components/account.styles';
 
 
 export const AccountScreen = ({navigation}) => {
   return(
     <AccountBackground>
         <AccountCover>
+            <Title>Food Is Ready</Title>
             <AccountCountainer>
                 <AuthButton
                     icon="lock-open-outline"
@@ -17,8 +18,7 @@ export const AccountScreen = ({navigation}) => {
                 </AuthButton>
                 <Spacer size="large">
                     <AuthButton
-                        icon="lock-open-outline"
-                        color="black"
+                        icon="email"
                         mode="contained"
                         onPress={() =>navigation.navigate("Register")}>
                         Register
