@@ -1,17 +1,60 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-import {SparklesIcon} from 'react-native-heroicons/solid';
-import {SparklesIcon as SparklesIconOutline} from 'react-native-heroicons/outline';
-// Old solid style from heroicons v1
-import {SparklesIcon as SparklesIconMini} from 'react-native-heroicons/mini';
+import React, {useContext, useState} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import styled from 'styled-components/native';
+import {TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Text} from '../../../components/typography/text.component';
+import {Spacer} from '../../../components/spacer/spacer.component';
+import {AuthenticationContext} from '../../../services/authentication/authentication.context';
+import {List, Avatar} from 'react-native-paper';
+import {SafeArea} from '../../../components/utility/safe-area.component';
 
-export const SettingsScreen = () => {
+const SettingsItem = styled(List.Item)`
+  padding: 16px;
+`;
+
+const AvatarContainer = styled.View`
+  align-items: center;
+`;
+
+export const SettingsScreen = ({navigation}) => {
+  const {onLogout, user} = useContext(AuthenticationContext);
+  const [photo, setPhoto] = useState(null);
+
+  const getProfilePicture = async currentUser => {
+    const photoUri = await AsyncStorage.getItem(`${currentUser.uid}-photo`);
+    setPhoto(photoUri);
+    console.log(photo);
+  };
+  useFocusEffect(() => {
+    getProfilePicture(user);
+  }, [user]);
   return (
-    <View>
-      <SparklesIcon color="red" />
-      <SparklesIconOutline color="red" />
-      <SparklesIconMini color="red" fill="black" />
-      <Text>Settings Screen</Text>
-    </View>
+    <SafeArea>
+      <AvatarContainer>
+        <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
+          {!photo && (
+            <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+          )}
+          {photo && <Avatar.Image size={180} source={{uri: photo}} />}
+        </TouchableOpacity>
+        <Spacer position="top" size="large">
+          <Text variant="caption">{user.email}</Text>
+        </Spacer>
+      </AvatarContainer>
+      <List.Section>
+        <SettingsItem
+          title="Favourites"
+          description="View your favourites"
+          left={props => <List.Icon {...props} color="black" icon="heart" />}
+          onPress={() => navigation.navigate('Favourites')}
+        />
+        <SettingsItem
+          title="Logout"
+          left={props => <List.Icon {...props} color="black" icon="door" />}
+          onPress={onLogout}
+        />
+      </List.Section>
+    </SafeArea>
   );
 };
