@@ -33,6 +33,7 @@ import {host, isMock} from '../../utils/env';
 
 export const restaurantsRequest = location => {
   return fetch(`${host}/placesNearby?location=${location}&mock=${isMock}`).then(
+  // return fetch('https://us-central1-foodisready-ced8d.cloudfunctions.net/placesNearby').then(
     res => {
       return res.json();
     },

@@ -11,7 +11,7 @@ const functions = require('firebase-functions');
 const {geocodeRequest} = require('./geocode');
 const {placesRequest} = require('./places');
 const {payRequest} = require('./pay');
-const { Client } = require('@googlemaps/google-maps-services-js');
+const {Client} = require('@googlemaps/google-maps-services-js');
 const stripeClient = require('stripe')(functions.config().stripe.key);
 
 const googleClient = new Client({});
