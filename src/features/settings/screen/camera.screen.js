@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
-import { AuthenticationContext } from '../../../services/authentication/authentication.context';
+import {AuthenticationContext} from '../../../services/authentication/authentication.context';
 
 const ProfileCamera = styled(RNCamera)`
   width: 100%;
@@ -26,10 +26,11 @@ export const CameraScreen = ({navigation}) => {
     }
   };
   return (
-    <ProfileCamera
-      ref={camera => (cameraRef.current = camera)}
-      type={RNCamera.Constants.Type.front}>
-      <TouchableOpacity onPress={snap} />
-    </ProfileCamera>
+    <TouchableOpacity onPress={snap}>
+      <ProfileCamera
+        ref={camera => (cameraRef.current = camera)}
+        type={RNCamera.Constants.Type.front}
+      />
+    </TouchableOpacity>
   );
 };
