@@ -1,5 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
 import MapView, {Marker, Callout} from 'react-native-maps';
+import {SafeArea} from '../../../components/utility/safe-area.component';
 import {Text} from 'react-native';
 import styled from 'styled-components/native';
 import {LocationContext} from '../../../services/location/location.context';
@@ -11,7 +12,7 @@ const Map = styled(MapView)`
   height: 100%;
   width: 100%;
 `;
-export const MapScreen = ({navigation}) => {
+const RestaurantMap = ({navigation}) => {
   const {location} = useContext(LocationContext);
   const {restaurants = []} = useContext(RestaurantsContext);
   const [latDelta, setLatDelta] = useState(0);
@@ -42,15 +43,33 @@ export const MapScreen = ({navigation}) => {
               coordinate={{
                 latitude: restaurant.geometry.location.lat,
                 longitude: restaurant.geometry.location.lng,
-              }}r
-            >
-            <Callout onPress={()=> navigation.navigate("RestaurantDetail", {restaurant,})}>
-              <MapCallout restaurant={restaurant} />
-          </Callout>
-          </Marker>
+              }}>
+              <Callout
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', {restaurant})
+                }>
+                <MapCallout restaurant={restaurant} />
+              </Callout>
+            </Marker>
           );
         })}
       </Map>
     </>
   );
+};
+
+export const MapScreen = ({navigation}) => {
+  const {location} = useContext(LocationContext);
+
+  if (!location) {
+    return (
+      <Map
+        region={{
+          latitude,
+          longitude,
+        }}
+      />
+    );
+  }
+  return <RestaurantMap navigation={navigation} />;
 };
