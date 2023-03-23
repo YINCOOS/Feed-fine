@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RestaurantsNavigator} from './restaurants.navigator';
 // import {Text, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 import {MapScreen} from '../../features/map/screens/map.screen';
 import { CheckoutNavigator } from './checkout.navigator';
 // import { CheckoutScreen } from '../checkout/screens/checkout.screen';
@@ -17,11 +18,19 @@ import {SettingsNavigator} from './settings.navigator';
 // import Icon from 'react-native-paper/lib/typescript/components/Icon';
 
 const TAB_ICON = {
-  Restaurants: 'restaurant',
+  Restaurant: 'restaurant',
   Map: 'map',
   Checkout: 'cart',
   Settings: 'settings',
 };
+// const createScreenOptions = ({route}) => {
+//   const iconName = TAB_ICON[route.name];
+//   return {
+//     tabBarIcon: ({size, color}) => (
+//       <Icon name={iconName} size={size} color={color} />
+//     ),
+//   };
+// };
 const createScreenOptions = ({route}) => {
   const iconName = TAB_ICON[route.name];
   return {
@@ -38,16 +47,15 @@ export const AppNavigator = () => (
     <LocationContextProvider>
       <RestaurantsContextProvider>
         <CartContextProvider>
-          <Tab.Navigator
-          screenOptions={{
-            headerShown: false,
-            tabBarActiveTintColor: 'tomato',
-            tabBarInactiveTintColor: 'gray',
-            tabBarStyle: {
-              display: 'flex',
-            },
-          }}
-        >
+        <Tab.Navigator
+  screenOptions={createScreenOptions}
+  tabBarOptions={{
+    activeTintColor: 'tomato',
+    inactiveTintColor: 'gray',
+    style: {
+      display: 'flex',
+    },
+  }}>
             <Tab.Screen name="Restaurant" component={RestaurantsNavigator} />
             <Tab.Screen name="Checkout" component={CheckoutNavigator} />
             <Tab.Screen name="Map" component={MapScreen} />
