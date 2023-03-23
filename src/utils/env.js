@@ -23,5 +23,5 @@ const localHost = 'http://localhost:5000/foodisready-ced8d/us-central1/';
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 export const isAndroid = Platform.OS === 'android';
 export const isDevelopment = process.env.NODE_ENV === 'development';
-export const isMock = false;
+export const isMock = true;
 export const host = !isDevelopment || isAndroid ? liveHost : localHost;
