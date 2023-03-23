@@ -3,7 +3,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RestaurantsNavigator} from './restaurants.navigator';
 // import {Text, Button} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {MapScreen} from '../../features/map/screens/map.screen';
 import { CheckoutNavigator } from './checkout.navigator';
 // import { CheckoutScreen } from '../checkout/screens/checkout.screen';
@@ -17,16 +17,16 @@ import {SettingsNavigator} from './settings.navigator';
 // import Icon from 'react-native-paper/lib/typescript/components/Icon';
 
 const TAB_ICON = {
-  Restaurants: 'md-restaurant',
-  Map: 'md-map',
-  Checkout: 'md-cart',
-  Settings: 'md-settings',
+  Restaurants: 'restaurant',
+  Map: 'map',
+  Checkout: 'cart',
+  Settings: 'settings',
 };
 const createScreenOptions = ({route}) => {
   const iconName = TAB_ICON[route.name];
   return {
     tabBarIcon: ({size, color}) => (
-      <Ionicons name={iconName} size={size} color={color} />
+      <Icon name={iconName} size={size} color={color} />
     ),
   };
 };
@@ -45,7 +45,6 @@ export const AppNavigator = () => (
               inactiveTintColor: 'gray',
             }}>
             <Tab.Screen name="Restaurant" component={RestaurantsNavigator} />
-            {/* <Tab.Screen name="Checkout" component={CheckoutScreen} /> */}
             <Tab.Screen name="Checkout" component={CheckoutNavigator} />
             <Tab.Screen name="Map" component={MapScreen} />
             <Tab.Screen name="Settings" component={SettingsNavigator} />

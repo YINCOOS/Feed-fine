@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {Text} from '../../../components/typography/text.component';
-import {List} from 'react-native-paper';
+import {List, Divider} from 'react-native-paper';
 import {ScrollView} from 'react-native';
 import {Spacer} from '../../../components/spacer/spacer.component';
 import {SafeArea} from '../../../components/utility/safe-area.component';
@@ -92,6 +92,8 @@ export const CheckoutScreen = ({navigation}) => {
           <Spacer position="left" size="large">
             <Text>Total:{sum / 100}</Text>
           </Spacer>
+          <Spacer position="top" size="large"/>
+          <Divider />
         </Spacer>
         <NameInput
           label="Input Your Name"
