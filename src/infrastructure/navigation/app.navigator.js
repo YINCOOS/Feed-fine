@@ -39,11 +39,15 @@ export const AppNavigator = () => (
       <RestaurantsContextProvider>
         <CartContextProvider>
           <Tab.Navigator
-            screenOptions={(createScreenOptions, {headerShown: false})}
-            tabBarOptions={{
-              activeTintColor: 'tomato',
-              inactiveTintColor: 'gray',
-            }}>
+          screenOptions={{
+            headerShown: false,
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+            tabBarStyle: {
+              display: 'flex',
+            },
+          }}
+        >
             <Tab.Screen name="Restaurant" component={RestaurantsNavigator} />
             <Tab.Screen name="Checkout" component={CheckoutNavigator} />
             <Tab.Screen name="Map" component={MapScreen} />
